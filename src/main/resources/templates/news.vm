@@ -1,0 +1,37 @@
+<html>
+<body>
+<pre>
+Hello vm.
+##这是一行注释
+#*
+多行注释
+多行注释
+*#
+$!{value1}
+$!{value2}
+
+循环
+#foreach($color in $colors)
+Color index=$!{foreach.index}/count=$!{foreach.count}:$!{color}
+#end
+
+#foreach($key in $map.keySet())
+map index=$!{foreach.index}/count=$!{foreach.count}:$!{key} $!{map.get($key)}
+#end
+
+包含其他文件
+#set($title="I am a title.")
+include:#include("header.vm")<br>
+parse:#parse("header.vm")<br>
+
+预定义函数及调用
+#macro (render_color, $color, $index)
+Color By Macro $index, $color
+#end
+
+#foreach ($color in $colors)
+    #render_color($color, $foreach.index)
+#end
+</pre>
+</body>
+</html>
